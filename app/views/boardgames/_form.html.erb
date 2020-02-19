@@ -1,0 +1,37 @@
+<%= form_with(model: boardgame, local: true) do |form| %>
+  <% if boardgame.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(boardgame.errors.count, "error") %> prohibited this boardgame from being saved:</h2>
+
+      <ul>
+      <% boardgame.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rules %>
+    <%= form.text_area :rules %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :pieces_images %>
+    <%= form.file_field :pieces_images %>
+  </div>
+
+  <div class="field">
+    <%= form.label :boards_images %>
+    <%= form.file_field :boards_images %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
