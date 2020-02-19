@@ -1,29 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Boardgames</h1>
+<% @boardgames.each_slice(3) do |boards|%>
+    <div class="card-deck">
+        <% boards.each do |board| %>
+            <div class="card my-2" style="width: 18rem" >
+                <%= image_tag board.board_image.picture, class: "card-img-top img-fluid, style:'filter:grayscale(100%)'" %>
+                <div class="card-body">
+                    <h3><%= board.name %> ago</h3>
+                    <h3><%= board.rules %> ago</h3>
+                    <h5> <%= link_to todo.task.name, todos_path(todo), class:"card-title" %></h5>
+                    
+                </div>
+            </div>
+        <% end%>
+    </div>
+<% end%>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Rules</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @boardgames.each do |boardgame| %>
-      <tr>
-        <td><%= boardgame.name %></td>
-        <td><%= boardgame.rules %></td>
-        <td><%= link_to 'Show', boardgame %></td>
-        <td><%= link_to 'Edit', edit_boardgame_path(boardgame) %></td>
-        <td><%= link_to 'Destroy', boardgame, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 
 <%= link_to 'New Boardgame', new_boardgame_path %>

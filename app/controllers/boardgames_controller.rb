@@ -65,9 +65,9 @@ class BoardgamesController < ApplicationController
     begin
       @image = ActiveStorage::Attachment.find(params[:image_id])
       @image.purge
-      redirect_to post_path(@post), notice: 'Imagen eliminada con éxito'
+      redirect_to boardgame_path(@boardgame), notice: 'Imagen eliminada con éxito'
     rescue ActiveRecord::RecordNotFound
-      redirect_to post_path(@post), alert: 'Error al eliminar la imagen'
+      redirect_to boardgame_path(@boardgame), alert: 'Error al eliminar la imagen'
     end
   end
 
@@ -79,6 +79,6 @@ class BoardgamesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def boardgame_params
-      params.require(:boardgame).permit(:name, :rules, pieces_images: [], boards_images: [])
+      params.require(:boardgame).permit(:name, :rules, :rules_file, :board_image, pieces_images: [])
     end
 end
