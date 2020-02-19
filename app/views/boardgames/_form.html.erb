@@ -20,15 +20,20 @@
     <%= form.label :rules %>
     <%= form.text_area :rules %>
   </div>
+
+  <div class="field">
+    <%= form.label :rules_file %>
+    <%= form.file_field :rules_file %>
+  </div>
   
   <div class="field">
     <%= form.label :pieces_images %>
-    <%= form.file_field :pieces_images %>
+    <%= form.file_field :pieces_images, multiple: true %>
   </div>
 
   <div class="field">
-    <%= form.label :boards_images %>
-    <%= form.file_field :boards_images %>
+    <%= form.label :board_image %>
+    <%= form.file_field :board_image, multiple: true %>
   </div>
 
   <div class="actions">

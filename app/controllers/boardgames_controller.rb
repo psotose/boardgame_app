@@ -1,5 +1,5 @@
 class BoardgamesController < ApplicationController
-  before_action :set_boardgame, only: [:show, :edit, :update, :destroy]
+  before_action :set_boardgame, only: [:show, :edit, :update, :destroy, :delete_image]
 
   # GET /boardgames
   # GET /boardgames.json
@@ -58,6 +58,16 @@ class BoardgamesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to boardgames_url, notice: 'Boardgame was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def delete_image
+    begin
+      @image = ActiveStorage::Attachment.find(params[:image_id])
+      @image.purge
+      redirect_to post_path(@post), notice: 'Imagen eliminada con éxito'
+    rescue ActiveRecord::RecordNotFound
+      redirect_to post_path(@post), alert: 'Error al eliminar la imagen'
     end
   end
 
