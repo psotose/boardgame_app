@@ -5,12 +5,12 @@
     <div class="card-deck">
         <% boards.each do |board| %>
             <div class="card my-2" style="width: 18rem" >
-                <%= image_tag board.board_image.picture, class: "card-img-top img-fluid, style:'filter:grayscale(100%)'" %>
+                <%= image_tag board.board_image, class: "card-img-top img-fluid", style:'filter:grayscale(100%)' %>
                 <div class="card-body">
                     <h3><%= board.name %> ago</h3>
                     <h3><%= board.rules %> ago</h3>
-                    <h5> <%= link_to todo.task.name, todos_path(todo), class:"card-title" %></h5>
-                    
+                    <h5><%= link_to 'Edit', edit_boardgame_path(board) %></h5>
+                    <h5><%= link_to 'Show', @boardgame %></h5> 
                 </div>
             </div>
         <% end%>
