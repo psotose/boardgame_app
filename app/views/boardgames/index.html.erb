@@ -14,7 +14,7 @@
         <% boards.each do |board| %>
             <div class="col-sm-3">
                 <div class="card h-70 my-2">
-                    <%= image_tag board.board_image.variant(resize: "100x100"), style:'filter:grayscale(100%)' %>
+                    <%= image_tag board.board_image.variant(resize: "100x100"), style:'filter:grayscale(100%)'if board.board_image.attached? %>
                     <div class="card-body">
                         <h3 class="text-success"><%= board.name %></h3>
                         <h4><%= board.rules %></h4>

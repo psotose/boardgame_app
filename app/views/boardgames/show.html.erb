@@ -19,8 +19,7 @@
 </p>
 <p>
   <strong>Rules File:</strong>
-  <%= @boardgame.rules_file %>
-  <a href="<% rails_blob_path(@boardgame.rules_file, disposition: 'attachment') %>" >Download PDF</a> 
+  <%= link_to "Download PDF", rails_blob_path(@boardgame.rules_file, disposition: 'attachment') %> 
 </p>
 
 <% if @boardgame.pieces_images.attached? %>
@@ -29,18 +28,18 @@
     <br>
       <% @boardgame.pieces_images.each do |image| %>
         <%= image_tag image.variant(resize: "100x100"), style: "-webkit-filter: grayscale(100%)" %>
-        <a href="<% rails_blob_path(image, disposition: "attachment")%>" >Download the pieces images</a>
+        <%= link_to "Download the pieces images", rails_blob_path(image, disposition: 'attachment')%>
         <%= link_to 'Remove', delete_image_boardgame_path(@boardgame, image.signed_id), method: :delete, data: { confirm: 'Are you sure?' } %>  
       <% end %>
   </p>
 <% end %>
-
+<% if @boardgame.board_image.attached? %>
 <p>
   <strong>Board Image:</strong>
   <%= image_tag @boardgame.board_image.variant(resize: "100x100"), style: "-webkit-filter: grayscale(100%)"%> 
-  <a href="<% rails_blob_path(@boardgame.board_image, disposition: "attachment")%>" >Download the board image</a>
+  <%= link_to "Download the board image", rails_blob_path(@boardgame.board_image, disposition: 'attachment')%>
   <%= link_to 'Remove', delete_image_boardgame_path(@boardgame, @boardgame.board_image.signed_id), method: :delete, data: { confirm:'Are you sure?' } %>
 </p>
-
+<% end %>
 <%= link_to 'Edit', edit_boardgame_path(@boardgame) %> |
 
