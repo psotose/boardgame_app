@@ -11,7 +11,7 @@
                         <h3><%= board.name %> ago</h3>
                         <h3><%= board.rules %> ago</h3>
                         <h5><%= link_to 'Edit', edit_boardgame_path(board) %></h5>
-                        <h5><%= link_to 'Show', @board %></h5> 
+                        <h5><%= link_to 'Show', board %></h5> 
                         <h5><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></h5> 
                     </div>
                 </div>
