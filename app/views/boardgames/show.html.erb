@@ -1,13 +1,6 @@
 <p id="notice"><%= notice %></p>
+ 
 
-<div class="row">
-    <div class="col-8"></div>
-    <div class="col-4">
-        <button type="button" class="btn btn-success">  
-          <%= link_to 'Back', boardgames_path %>
-        </button>
-    </div>
-</div>  
 <p>
   <strong>Name:</strong>
   <%= @boardgame.name %>
@@ -27,19 +20,26 @@
     <strong>Images:</strong>
     <br>
       <% @boardgame.pieces_images.each do |image| %>
-        <%= image_tag image.variant(resize: "100x100"), style: "-webkit-filter: grayscale(100%)" %>
+        <%= image_tag image.variant(resize: "100x100"), class:"my-2", style: "-webkit-filter: grayscale(100%)" %>
         <%= link_to "Download the pieces images", rails_blob_path(image, disposition: 'attachment')%>
         <%= link_to 'Remove', delete_image_boardgame_path(@boardgame, image.signed_id), method: :delete, data: { confirm: 'Are you sure?' } %>  
+      <br>
       <% end %>
   </p>
 <% end %>
 <% if @boardgame.board_image.attached? %>
 <p>
   <strong>Board Image:</strong>
+  <br>
   <%= image_tag @boardgame.board_image.variant(resize: "100x100"), style: "-webkit-filter: grayscale(100%)"%> 
   <%= link_to "Download the board image", rails_blob_path(@boardgame.board_image, disposition: 'attachment')%>
   <%= link_to 'Remove', delete_image_boardgame_path(@boardgame, @boardgame.board_image.signed_id), method: :delete, data: { confirm:'Are you sure?' } %>
 </p>
 <% end %>
-<%= link_to 'Edit', edit_boardgame_path(@boardgame) %> |
+
+<div class="btn-group" role="group">
+    <%= link_to 'Edit', edit_boardgame_path(@boardgame), class:"btn btn-success" %>
+    <%= link_to 'Back', boardgames_path, class:"btn btn-success" %>
+</div>
+
 
