@@ -30,7 +30,7 @@
       <% @boardgame.pieces_images.each do |image| %>
         <%= image_tag image.variant(resize: "100x100"), style: "-webkit-filter: grayscale(100%)" %>
         <a href="<% rails_blob_path(image, disposition: "attachment")%>" >Download the pieces images</a>
-        <%= link_to 'Remove', delete_image_boardgame_path(@boardgame, image), method: :delete, data: { confirm: 'Are you sure?' } %>  
+        <%= link_to 'Remove', delete_image_boardgame_path(@boardgame, image.signed_id), method: :delete, data: { confirm: 'Are you sure?' } %>  
       <% end %>
   </p>
 <% end %>
@@ -39,7 +39,7 @@
   <strong>Board Image:</strong>
   <%= image_tag @boardgame.board_image.variant(resize: "100x100"), style: "-webkit-filter: grayscale(100%)"%> 
   <a href="<% rails_blob_path(@boardgame.board_image, disposition: "attachment")%>" >Download the board image</a>
-  <%= link_to 'Remove', delete_image_boardgame_path(@self.board_image), method: :delete, data: { confirm:'Are you sure?' } %>
+  <%= link_to 'Remove', delete_image_boardgame_path(@boardgame, @boardgame.board_image.signed_id), method: :delete, data: { confirm:'Are you sure?' } %>
 </p>
 
 <%= link_to 'Edit', edit_boardgame_path(@boardgame) %> |

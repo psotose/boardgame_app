@@ -63,7 +63,7 @@ class BoardgamesController < ApplicationController
 
   def delete_image
     begin
-      @image = ActiveStorage::Attachment.find(params[:image_id])
+      @image = ActiveStorage::Blob.find_signed(params[:image_id])
       @image.purge
       redirect_to boardgame_path(@boardgame), notice: 'Imagen eliminada con éxito'
     rescue ActiveRecord::RecordNotFound
