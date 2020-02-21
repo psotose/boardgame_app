@@ -1,15 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Boardgames</h1>
-<% @boardgames.each_slice(3) do |boards|%>
+<h1 align="center">Boardgames</h1>
+<div class="row">
+    <div class="col-8"></div>
+    <div class="col-4">
+        <button type="button" class="btn btn-success">
+            <%= link_to 'New Boardgame', new_boardgame_path %>
+        </button>
+    </div>
+</div>
+<% @boardgames.each_slice(4) do |boards|%>
     <div class="card-deck">
         <% boards.each do |board| %>
-            <div class="col-sm-6">
-                <div class="card my-2" style="width: 18rem" >
-                    <%= image_tag board.board_image, class: "card-img-top img-fluid", style:'filter:grayscale(100%)' %>
+            <div class="col-sm-3">
+                <div class="card h-70 my-2">
+                    <%= image_tag board.board_image.variant(resize: "100x100"), style:'filter:grayscale(100%)' %>
                     <div class="card-body">
-                        <h3><%= board.name %> ago</h3>
-                        <h3><%= board.rules %> ago</h3>
+                        <h3 class="text-success"><%= board.name %></h3>
+                        <h4><%= board.rules %></h4>
                         <h5><%= link_to 'Edit', edit_boardgame_path(board) %></h5>
                         <h5><%= link_to 'Show', board %></h5> 
                         <h5><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></h5> 
@@ -20,5 +28,3 @@
     </div>
 <% end%>
 
-
-<%= link_to 'New Boardgame', new_boardgame_path %>
