@@ -12,7 +12,7 @@
 <p>
   <strong>Rules File:</strong>
   <%= @boardgame.rules_file %>
-  <a href="<%= rails_blob_path(@boardgame.rules_file, disposition: 'attachment') %>" > PDF</a> 
+  <a href="<% rails_blob_path(@boardgame.rules_file, disposition: 'attachment') %>" >Download PDF</a> 
 </p>
 
 <% if @boardgame.pieces_images.attached? %>
@@ -23,12 +23,15 @@
         <%= image_tag image.variant(resize: "100x100"), style: "-webkit-filter: grayscale(100%)" %>
         <%= link_to 'Remove', delete_image_boardgame_path(@boardgame, image), method: :delete,
         data: { confirm: 'Are you sure?' } %>
+        <a href="<% rails_blob_path(@boardgame.image, disposition: "attachment")%>" >Download the pieces images</a> 
       <% end %>
   </p>
 <% end %>
 
-<strong>Board Image:</strong>
-  <%= image_tag @boardgame.board_image.variant(resize: "100x100"), style: "-webkit-filter: grayscale(100%)"%> %> 
+<p>
+  <strong>Board Image:</strong>
+  <%= image_tag @boardgame.board_image.variant(resize: "100x100"), style: "-webkit-filter: grayscale(100%)"%> 
+  <a href="<% rails_blob_path(@boardgame.board_image, disposition: "attachment")%>" >Download the board image</a>
 </p>
 
 <%= link_to 'Edit', edit_boardgame_path(@boardgame) %> |
